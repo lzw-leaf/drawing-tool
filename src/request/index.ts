@@ -3,8 +3,8 @@ import type { AxiosRequestConfig } from "axios"
 import type { CallApiParams } from "./types"
 const instance = axios.create({
   headers: {
-    "Content-Type": "application/json;charset=UTF-8"
-    // "Access-Control-Allow-Origin": "*"
+    "Content-Type": "application/json;charset=UTF-8",
+    "Access-Control-Allow-Origin": "*"
   },
   // 请求时长
   timeout: 1000 * 10
