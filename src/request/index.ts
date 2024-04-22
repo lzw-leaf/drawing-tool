@@ -17,7 +17,7 @@ const instance = axios.create({
  * @param {string} method 请求方法，默认 post
  * @param {AxiosRequestConfig} config axios配置
  */
-export const callApi = async <T = any>({
+export const callApi = async ({
   api,
   params = {},
   prefix = "/api/draw-lots",
@@ -30,7 +30,7 @@ export const callApi = async <T = any>({
   const requestParams: AxiosRequestConfig = {
     url: api,
     method,
-    baseURL: "http://127.0.0.1:3030" + prefix,
+    baseURL: "http://yyhome.anshuye.cn:3030" + prefix,
     ...config
   }
   const dataKey = method === "get" ? "params" : "data"

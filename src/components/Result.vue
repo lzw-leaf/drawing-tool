@@ -42,6 +42,7 @@
 </template>
 
 <script setup lang="ts">
+import { AnyColumn } from "element-plus/es/components/table-v2/src/common.mjs"
 import { RoleInfo } from "../App.vue"
 
 const userName = ref("未知")
@@ -49,7 +50,7 @@ const columnList = [
   { dataKey: "own", title: `号主`, width: 120, align: "center" },
   { dataKey: "role", title: `职业`, width: 120, align: "center" },
   { dataKey: "target", title: `使用人`, width: 120, align: "center" }
-]
+] as AnyColumn[]
 const currentFilter = ref("0")
 
 const userList = ref<RoleInfo[]>(inject("userList")!)
