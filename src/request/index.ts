@@ -3,8 +3,8 @@ import type { AxiosRequestConfig } from "axios"
 import type { CallApiParams } from "./types"
 const instance = axios.create({
   headers: {
-    "Content-Type": "application/json;charset=UTF-8",
-    "Access-Control-Allow-Origin-Type": "*"
+    "Content-Type": "application/json;charset=UTF-8"
+    // "Access-Control-Allow-Origin": "*"
   },
   // 请求时长
   timeout: 1000 * 10
@@ -30,7 +30,7 @@ export const callApi = async <T = any>({
   const requestParams: AxiosRequestConfig = {
     url: api,
     method,
-    baseURL: location.origin + prefix,
+    baseURL: "http://127.0.0.1:3030" + prefix,
     ...config
   }
   const dataKey = method === "get" ? "params" : "data"
@@ -38,8 +38,9 @@ export const callApi = async <T = any>({
 
   try {
     const res = await instance.request<Record<string, any>>(requestParams)
+    console.log("相应值", res)
     const { data } = res
-    if (data.code === 200) return data
+    if (res.status === 200) return data
     return Promise.reject(data.msg) as any
   } catch (error) {
     return Promise.reject(error) as any

@@ -32,6 +32,22 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url))
     }
   },
+  server: {
+    open: true,
+    port: 3000,
+    host: true,
+    proxy: {
+      "/api/draw-lots": {
+        // 正式环境
+        // target: 'https://www.weixiaotong.com.cn',
+        // 测试环境
+        target: "http://127.0.0.1:3030/",
+        // target: 'http://10.10.10.7:666',
+        // target: 'http://172.20.10.7:18080',
+        changeOrigin: true
+      }
+    }
+  },
   base: "./",
   build: {
     outDir: "docs"

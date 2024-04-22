@@ -63,10 +63,8 @@ const startDrawingLots = () => {
 const reSaveCurrentRoleInfo = async () => {
   const userName = localStorage.getItem("userName")
   try {
-    // todo 获取抽奖结果接口
     drawed.value = true
-    // const id = await callApi({ api: "save_role", params: { userName } })
-    const id = 3
+    const id = await callApi({ api: "save_role", params: { userName } })
     const index = canDrawList.value.findIndex(role => role.id === id)
     realIndex.value = index
   } catch (error) {
