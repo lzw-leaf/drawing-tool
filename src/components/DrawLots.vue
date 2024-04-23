@@ -41,10 +41,9 @@ const onDrawClick = () => {
 }
 
 const getSpeedLevel = (timeNum: number) => {
-  if (timeNum > 6000) return 300
-  if (timeNum > 5000) return 200
-  if (timeNum > 4000) return 100
-  if (timeNum > 0) return 50
+  if (timeNum > 4000) return 300
+  if (timeNum > 3000) return 200
+  if (timeNum > 0) return 100
 }
 
 const startDrawingLots = () => {
@@ -54,8 +53,13 @@ const startDrawingLots = () => {
       : 0
   time.value += 100
   tempInfo.value = canDrawList.value[currentIndex.value]
-  if (realIndex.value === currentIndex.value && time.value > 7000) {
-    return emits("success", canDrawList.value[realIndex.value])
+  if (time.value > 5000) {
+    currentIndex.value = realIndex.value
+    tempInfo.value = canDrawList.value[currentIndex.value]
+    return setTimeout(
+      () => emits("success", canDrawList.value[realIndex.value]),
+      2000
+    )
   }
   setTimeout(() => startDrawingLots(), getSpeedLevel(time.value))
 }
