@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { ElMessage } from "element-plus"
 import { RoleInfo } from "../App.vue"
 
 const emits = defineEmits(["success"])
@@ -40,9 +41,8 @@ const onDrawClick = () => {
 }
 
 const getSpeedLevel = (timeNum: number) => {
-  if (timeNum > 9000) return 500
-  if (timeNum > 8000) return 300
-  if (timeNum > 6000) return 200
+  if (timeNum > 6000) return 300
+  if (timeNum > 5000) return 200
   if (timeNum > 4000) return 100
   if (timeNum > 0) return 50
 }
@@ -54,7 +54,7 @@ const startDrawingLots = () => {
       : 0
   time.value += 100
   tempInfo.value = canDrawList.value[currentIndex.value]
-  if (realIndex.value === currentIndex.value && time.value > 10000) {
+  if (realIndex.value === currentIndex.value && time.value > 7000) {
     return emits("success", canDrawList.value[realIndex.value])
   }
   setTimeout(() => startDrawingLots(), getSpeedLevel(time.value))
@@ -68,7 +68,7 @@ const reSaveCurrentRoleInfo = async () => {
     const index = canDrawList.value.findIndex(role => role.id === id)
     realIndex.value = index
   } catch (error) {
-    console.error("接口报错", error)
+    ElMessage.warning("抽取失败！当前用户已抽取角色！")
   }
 }
 

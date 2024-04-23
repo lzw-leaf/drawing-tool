@@ -1,7 +1,7 @@
 <template>
   <div class="app h-full flex flex-col justify-center items-center">
     <Transition>
-      <User v-if="currentStep === 0" @success="currentStep = 1" />
+      <User v-if="currentStep === 0" @success="onInputNameSuccess" />
       <DrawLots v-else-if="currentStep === 1" @success="onDrawLotsSuccess" />
       <Result v-else-if="currentStep === 2" />
     </Transition>
@@ -23,6 +23,11 @@ export interface RoleInfo {
 }
 const currentStep = ref(0)
 const userList = ref<RoleInfo[]>([])
+
+const onInputNameSuccess = async () => {
+  await reFindUserList()
+  currentStep.value = 1
+}
 
 const onDrawLotsSuccess = () => {
   currentStep.value = 2

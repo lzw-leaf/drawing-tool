@@ -30,7 +30,7 @@ export const callApi = async ({
   const requestParams: AxiosRequestConfig = {
     url: api,
     method,
-    baseURL: "https://yyhome.anshuye.cn:3030" + prefix,
+    baseURL: location.origin + prefix,
     ...config
   }
   const dataKey = method === "get" ? "params" : "data"

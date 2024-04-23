@@ -5,8 +5,8 @@ const RETRY_DELAY = 1000
 /* 实例化请求配置 */
 export const instance = axios.create({
   headers: {
-    "Content-Type": "application/json;charset=UTF-8"
-    // "Access-Control-Allow-Origin": "*"
+    "Content-Type": "application/json;charset=UTF-8",
+    "Access-Control-Allow-Origin": "*"
   },
   // 请求时长
   timeout: 1000 * 10
